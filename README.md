@@ -1,4 +1,4 @@
-## AWS Polly Text-To-Speech PHP Library
+## PHP Library: Youtube downloader
 
 PHP Library to download youtube videos.
 
