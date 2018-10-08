@@ -14,7 +14,7 @@ class Downloader
 {
     private $ffmpeg_path;              // absolute path of the ffmpeg installation
     private $youtubedl_path;           // absolute path of the youtube-dl installation
-    private $local_path;               // local path to store file
+    private $output_path;              // local path to store file
     
     private $video_url;                // url of the video file to download; youtube or facebook video url
 
@@ -23,15 +23,15 @@ class Downloader
      *
      * @param $ffmpeg_path: Absolute path of the ffmpeg package installation
      * @param $youtubedl_path: Absolute path of the youtube-dl package installation
-     * @param null $local_path: Local path to save download file to
+     * @param null $output_path: Local path to save download file to
      */
-    function __construct($ffmpeg_path, $youtubedl_path, $local_path = null)
+    function __construct($ffmpeg_path, $youtubedl_path, $output_path = null)
     {
         $this->ffmpeg_path = $ffmpeg_path;
         $this->youtubedl_path = $youtubedl_path;
         
-        if ($local_path) {
-            $this->local_path = $local_path;
+        if ($output_path) {
+            $this->output_path = $output_path;
         }
     }
     
@@ -40,9 +40,9 @@ class Downloader
      *
      * @param $path: Absolute local path to save downloaded file
      */
-     public function setLocalPath($path)
+     public function setOutputPath($path)
      {
-         $this->local_path = $path;
+         $this->output_path = $path;
      }
 
     /**
@@ -61,10 +61,10 @@ class Downloader
         }
         
         /**
-         * Check if local_path is set
+         * Check if output_path is set
          */
-        if (!$this->local_path) {
-            throw new \Exception('Local path not set. Set local path using setLocalPath() function. Local path must be absolute where to store the downloaded file.');
+        if (!$this->output_path) {
+            throw new \Exception('Local path not set. Set local path using setOutputPath() function. Local path must be absolute where to store the downloaded file.');
         }
         
         /**
@@ -80,19 +80,19 @@ class Downloader
         /**
          * Create directory if it does not exists already
          */
-        if (!is_dir($this->local_path)) {
-            if (!mkdir($this->local_path, 0777, true)) {
-                throw new \Exception('Unable to create destination directory: '.$this->local_path);
+        if (!is_dir($this->output_path)) {
+            if (!mkdir($this->output_path, 0777, true)) {
+                throw new \Exception('Unable to create destination directory: '.$this->output_path);
             }
-            if (!chmod($this->local_path, 0777)) {
-                throw new \Exception('File permission could not be changed to 0777: '.$this->local_path);
+            if (!chmod($this->output_path, 0777)) {
+                throw new \Exception('File permission could not be changed to 0777: '.$this->output_path);
             }
         }
 
         /**
          * Generate absolute file path with new file name
          */
-        $absolute_file_path = $this->local_path . $file_name;
+        $absolute_file_path = $this->output_path . $file_name;
 
         /**
          * Generate command to run
@@ -111,8 +111,7 @@ class Downloader
         if ($output_variable === 0) {
 
             if (is_file($absolute_file_path)) {
-                $this->local_path =  $absolute_file_path;
-                return $this->local_path;
+                return $absolute_file_path;
             } else {
                 throw new \Exception('Failed to download youtube video: '.$res_exec);
             }
