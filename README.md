@@ -1,6 +1,6 @@
-## PHP Library: Youtube downloader
+## PHP Library: Facebook-Youtube downloader
 
-PHP Library to download youtube videos.
+PHP Library to download Facebook and Youtube videos.
 
 ---
 ### Using the Library
@@ -14,25 +14,26 @@ PHP Library to download youtube videos.
 
 Intall library in PHP project using composer
 ```
-composer require tbetool/php-youtube-download
+composer require tbetool/php-fb-youtube-download
 ```
 
 #### Using Library
 
-$youtubeDownloader = new YoutubeDownloader(FFMPEG_PATH, YOUTUBE-DL_PATH);
+$downloader = new Downloader(FFMPEG_PATH, YOUTUBE-DL_PATH);
 
 #### Setting output path
 Set absolute path of the directory where to save the output. You don't need to provide a file name as it will be auto generated.
 ```
 $path = '/aboslute/path/to/directory';
 
-$youtubeDownloader->setOutputPath($path);
+$downloader->setOutputPath($path);
 ```
 
 #### Download video
 ```
-$youtubeDownloader->download(video_url);
+$downloader->download(video_url);
 ```
+You can pass Facebook or Youtube video url to the `download()` function.  
 If video is downloaded successfully, this will return the path of the local video saved, otherwise will throw an exception.
 
 ---
@@ -43,7 +44,7 @@ Every function throws an Exception in case of any error/issue. Bind the code blo
 _Ex:_
 ```
 try {
-    $youtubeDownloader->download(video_url);
+    $downloader->download(video_url);
 } catch (Exception $exception) {
     echo $exception->getMessage();
 }
@@ -52,7 +53,7 @@ try {
 ---
 ### Bug Reporting
 
-If you found any bug, create an [issue](https://github.com/TBETool/aws-polly/issues/new).
+If you found any bug, create an [issue](https://github.com/TBETool/php-fb-youtube-download/issues/new).
 
 ---
 ### Support and Contribution
