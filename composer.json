@@ -1,0 +1,21 @@
+{
+    "name": "tbetool/php-fb-youtube-download",
+    "type": "library",
+    "description": "Based on Youtube-dl and FFMPEG. Downloads Youtube and Facebook videos from the url.",
+    "keywords": ["facebook downloader", "php facebook video download", "php youtube video download", "facebook video download", "youtube video download", "php downloader", "youtube downloader", "facebook downloader", "php facebook download video", "php facebook download", "php youtube download video", "Anuj Sharma", "TBE", "Anuj TBE", "PHP download from url"],
+    "homepage": "http://thebornengineer.com",
+    "authors": [
+        {
+            "name": "Anuj Sharma",
+            "email": "anuj@thebornengineer.com",
+            "homepage": "https://anujsh.in",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.5"
+    },
+    "autoload": {
+        "psr-4": {"TBETool\\": "src/"}
+    }
+}
